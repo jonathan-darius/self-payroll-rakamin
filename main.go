@@ -28,12 +28,16 @@ func init() {
 		port = "8000"
 	}
 	router = gin.Default()
+
 	//router.Use(gin.Logger())
 }
 
 func main() {
 	position := router.Group("/position")
+	company := router.Group("/company")
+
 	routes.UserRoutes(position)
+	routes.CompanyRoutes(company)
 	errRun := router.Run(":" + port)
 	if errRun != nil {
 		log.Fatal(errRun)
