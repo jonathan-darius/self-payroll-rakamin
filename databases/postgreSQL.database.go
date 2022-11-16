@@ -24,6 +24,6 @@ func dbInit() *gorm.DB {
 		log.Fatalln("Cant Connect To Databases: ", err)
 	}
 
-	db.AutoMigrate(&models.Position{}, &models.Company{})
+	db.AutoMigrate(&models.Transaction{}, &models.Position{}, &models.Company{}, &models.User{}, &models.User{})
 	return db
 }

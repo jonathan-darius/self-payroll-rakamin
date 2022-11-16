@@ -32,6 +32,7 @@ func CreatePosition() gin.HandlerFunc {
 			})
 			return
 		}
+
 		response := &utils.PositionUtils{
 			Name:      position.Name,
 			Salary:    position.Salary,

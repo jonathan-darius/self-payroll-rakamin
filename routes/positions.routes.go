@@ -5,7 +5,7 @@ import (
 	"self-payroll/controllers"
 )
 
-func UserRoutes(incomingRoutes *gin.RouterGroup) {
+func PositionRoutes(incomingRoutes *gin.RouterGroup) {
 	incomingRoutes.POST("/", controllers.CreatePosition())
 	incomingRoutes.DELETE("/:id", controllers.DeletePosition())
 	incomingRoutes.GET("/:id", controllers.SearchPosition())

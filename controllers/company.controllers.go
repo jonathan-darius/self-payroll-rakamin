@@ -3,7 +3,7 @@ package controllers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"self-payroll/models"
+	models "self-payroll/models"
 	"self-payroll/utils"
 )
 
@@ -121,6 +121,19 @@ func TopUpCompany() gin.HandlerFunc {
 			})
 			return
 		}
+		trans := new(models.Transaction)
+		trans.Amount = int(topup.Balance)
+		trans.Note = "Topup balance company"
+		trans.Type = "credit"
+		if err := dbClient.Create(&trans).Error; err != nil {
+			ctx.JSON(http.StatusBadGateway, gin.H{
+				"success": false,
+				"message": "failed",
+				"data":    "",
+			})
+			return
+		}
+
 		ctx.JSON(http.StatusOK, gin.H{
 			"success": true,
 			"message": "success",
