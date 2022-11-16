@@ -35,9 +35,13 @@ func init() {
 func main() {
 	position := router.Group("/position")
 	company := router.Group("/company")
+	employees := router.Group("/employee")
+	transactions := router.Group("/transactions")
 
-	routes.UserRoutes(position)
+	routes.PositionRoutes(position)
 	routes.CompanyRoutes(company)
+	routes.EmployeesRoutes(employees)
+	routes.TransactionsRoutes(transactions)
 	errRun := router.Run(":" + port)
 	if errRun != nil {
 		log.Fatal(errRun)
